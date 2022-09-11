@@ -1,0 +1,31 @@
+{
+  "name": "texteditor-backend",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "http://.",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.17.2",
+    "mongodb": "^4.8.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.19"
+  },
+  "scripts": {
+    "deploy": "npm run build && rsync -av --delete build/ asho20@ssh.student.bth.se:www/editor",
+    "start": "nodemon app.js",
+    "production": "NODE_ENV='production' node app.js"
+  },
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Asa-Hog/BTH-jsramverk-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Asa-Hog/BTH-jsramverk-backend/issues"
+  }
+}
