@@ -14,11 +14,18 @@
   "scripts": {
     "deploy": "npm run build && rsync -av --delete build/ asho20@ssh.student.bth.se:www/editor",
     "start": "nodemon app.js",
-    "production": "NODE_ENV='production' node app.js"
+    "production": "NODE_ENV='production' node app.js",
+    "test": "nyc --reporter=html --reporter=text --reporter=clover mocha --timeout 10000",
+    "clean": "rm -rf node_modules package-lock.json"
   },
   "description": "",
   "main": "app.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Asa-Hog/BTH-jsramverk-backend.git"

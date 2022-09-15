@@ -12,9 +12,9 @@ router.put("/", async (request, response) => {
     const result = await docsModel.update(currentDoc);
     // console.log("result:", result);
 
-    // VILL VI RETURNERA NEDAN PÅ SAMMA SÄTT SOM FÖR CREATE??
-    return response.json(result);
-    // return response.status(201).json( { data: result} );
+    // VILL VI RETURNERA NEDAN PÅ SAMMA SÄTT SOM FÖR CREATE?? Nej status 200 för put 
+    // return response.json(result);
+    return response.status(200).json( { data: result} );
 
 
     // Gör en koll så response/result status blev 201 - dvs att dokumentet skapades
