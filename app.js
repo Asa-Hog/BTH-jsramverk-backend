@@ -20,7 +20,8 @@ const port = process.env.PORT || 1337; // Emil hade 8976
 
 // Ett annat sätt att uppnå samma funktionalitet finns numer tillgängligt direkt i express.
 app.use(express.json()); // url-encodar mellanslag, åäö mm för delete, post, put-metoderna
-// Ovanstående rad gör att url-encodning utförs på alla get, post, put, delete i hela appen. Annars används det bara för get (från webbläsaren automatiskt)
+// Ovanstående rad gör att url-encodning utförs på alla get, post, put, delete
+// i hela appen. Annars används det bara för get (från webbläsaren automatiskt)
 
 app.use(cors());
 app.options('*', cors()); //Emil hade
@@ -76,6 +77,7 @@ app.use('/update', update);
 // Put this last
 app.use((req, res, next) => {
     var err = new Error("Not Found");
+
     err.status = 404;
     next(err);
 });
@@ -100,7 +102,7 @@ app.use((err, req, res, next) => {
 // app.listen(port, () => console.log(`Example API listening on port ${port}!`));
 
 const server = app.listen(port, () => {
-    console.log(`Example API listening on port ${port}!`);
+    console.log(`Editor API listening on port ${port}!`);
 });
 
 module.exports = server;

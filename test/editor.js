@@ -1,3 +1,4 @@
+/* global it describe before  */
 process.env.NODE_ENV = 'test';
 
 const chai = require('chai');
@@ -12,9 +13,53 @@ const database = require("../db/database.js");
 const collectionName = "docs";
 
 // Den här delen tar bort allt ur test-databasen - gör det före alla tester
-describe('editor', () => {
-    before(() => {
-        return new Promise(async (resolve) => {
+// describe('editor', () => {
+//     before(() => {
+//         return new Promise(async (resolve) => {
+//             const db = await database.getDb();
+
+//             db.db.listCollections(
+//                 { name: collectionName }
+//             )
+//                 .next()
+//                 .then(async function (info) {
+//                     if (info) {
+//                         await db.collection.drop();
+//                     }
+//                 })
+//                 .catch(function (err) {
+//                     console.error(err);
+//                 })
+//                 .finally(async function () {
+//                     await db.client.close();
+//                     resolve();
+//                 });
+//         });
+//     });
+
+//     // Här ska antal dokument i db vara 0
+//     describe('GET /docs', () => {
+//         it('200 Get all docs', (done) => {
+//             chai.request(server)
+//                 .get("/docs")
+//                 .end((err, res) => {
+//                     res.should.have.status(200);
+//                     res.body.should.be.an("object");
+//                     res.body.data.should.be.an("array");
+//                     res.body.data.length.should.be.equal(0);
+
+//                     done();
+//                 });
+//         });
+//     });
+
+
+
+
+
+    describe('editor', () => {
+
+        before(async function() {
             const db = await database.getDb();
 
             db.db.listCollections(
@@ -31,26 +76,24 @@ describe('editor', () => {
                 })
                 .finally(async function () {
                     await db.client.close();
-                    resolve();
                 });
+            });
+    
+        // Här ska antal dokument i db vara 0
+        describe('GET /docs', () => {
+            it('200 Get all docs', (done) => {
+                chai.request(server)
+                    .get("/docs")
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.should.be.an("object");
+                        res.body.data.should.be.an("array");
+                        res.body.data.length.should.be.equal(0);
+    
+                        done();
+                    });
+            });
         });
-    });
-
-    // Här ska antal dokument i db vara 0
-    describe('GET /docs', () => {
-        it('200 Get all docs', (done) => {
-            chai.request(server)
-                .get("/docs")
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.an("object");
-                    res.body.data.should.be.an("array");
-                    res.body.data.length.should.be.equal(0);
-
-                    done();
-                });
-        });
-    });
 
     // Här testar jag att lägga till ett dokument
     describe('POST /create', () => {
@@ -93,9 +136,9 @@ describe('editor', () => {
         // Här testar jag att uppdatera ett dokument
         it('200 Editing document', (done) => {
             let doc = {
-                    name: "new name",
-                    html: "new html",
-                };
+                name: "new name",
+                html: "new html",
+            };
 
             chai.request(server)
                 .put("/update")
@@ -103,7 +146,7 @@ describe('editor', () => {
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.an("object");
-                    // res.body.should.have.property("data");
+                    res.body.should.have.property("data");
                     res.body.data.should.have.property("name");
                     res.body.data.name.should.equal("new name");
                     res.body.data.html.should.equal("new html");

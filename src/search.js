@@ -6,7 +6,8 @@
 // const mongo = require("mongodb").MongoClient;
 // const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
 
-// // SÖKKRITERIER 1 ------Find documents for this living in... =====================================
+// // SÖKKRITERIER 1 ------Find documents for this living in...
+// =====================================
 // const criteria1 = {
 //     bor: "Mumindalen"
 // };
@@ -39,7 +40,7 @@
 // // SÖKVARIANT 2 ================================================
 // // // Do it within an Immediately Invoked Async Arrow Function.
 // // // This is to enable usage of await within the function scope.
-// // 
+// //
 // // (async () => {
 // //     // Find using await --- CRITERIA 2 ---
 // //     try {
@@ -72,7 +73,10 @@
 //  */
 // // en funktion som kopplar sig mot databasen och en colletion
 // // samt utför själva find-operationen.
-// // Funktionen använder konstruktionen async/await för att serialisera flödet mot databasen. Varje metod som jobbar mot databasen här är asynkron och har alternativet att använda callbacks, eller Promise. I koden här bygger vi på att ett Promise returneras när respektive metod är avklarad.
+// // Funktionen använder konstruktionen async/await för att serialisera flödet mot databasen.
+// Varje metod som jobbar mot databasen här är asynkron och har alternativet att använda callbacks,
+// eller Promise. I koden här bygger vi på att ett Promise returneras när respektive metod är
+// avklarad.
 // async function findInCollection(dsn, colName, criteria, projection, limit) {
 //     const client  = await mongo.connect(dsn);
 //     const db = await client.db();

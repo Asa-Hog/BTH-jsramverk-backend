@@ -6,13 +6,12 @@ let docsModel = require("../models/docsModel");
 
 
 router.put("/", async (request, response) => {
-
     let currentDoc = request.body;
 
     const result = await docsModel.update(currentDoc);
     // console.log("result:", result);
 
-    // VILL VI RETURNERA NEDAN PÅ SAMMA SÄTT SOM FÖR CREATE?? Nej status 200 för put 
+    // VILL VI RETURNERA NEDAN PÅ SAMMA SÄTT SOM FÖR CREATE?? Nej status 200 för put
     // return response.json(result);
     return response.status(200).json( { data: result} );
 
@@ -24,8 +23,6 @@ router.put("/", async (request, response) => {
     //     return res.status(201).json({ data: result.ops });
     // }
     // return result.data; // Skriver jag in detta som det ska vara får jag undefined
-
 });
-
 
 module.exports = router;

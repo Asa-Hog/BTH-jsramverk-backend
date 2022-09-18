@@ -4,9 +4,8 @@ var router = express.Router();
 
 let docsModel = require("../models/docsModel");
 
-
 router.post("/", async (request, response) => {
-    newDoc = request.body;
+    let newDoc = request.body;
     // console.log("newDoc create route", newDoc);
     const result = await docsModel.create(newDoc);
     // console.log("result:", result);
@@ -15,6 +14,5 @@ router.post("/", async (request, response) => {
     // return response.json(result);
     return response.status(201).json( { data: result} );
 });
-
 
 module.exports = router;

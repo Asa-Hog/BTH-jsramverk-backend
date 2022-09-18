@@ -3,7 +3,7 @@ const { ObjectId } = require('mongodb');
 
 let docsModel = {
 
-    reset: async function init(n) {
+    reset: async function init() {
         let db;
 
         try {
@@ -11,19 +11,19 @@ let docsModel = {
 
             await db.collection.deleteMany({});
             let result = await db.collection.insertMany([
-                    {    
+                {
                     "name": "Inköpslista",
                     "html": "Tomater"
-                    },
-                    {
+                },
+                {
                     "name": "Saga",
                     "html": "Det var en gång..."
-                    },
-                    {
+                },
+                {
                     "name": "Diktsamling",
                     "html": "En blå viol.."
-                    }
-                ]);
+                }
+            ]);
 
             return result;
         } catch (error) {
@@ -42,9 +42,9 @@ let docsModel = {
 
         try {
             db = await database.getDb();
-
             const allDocs = await db.collection.find({}).toArray();
             // const res = await db.collection.find(criteria, projection).limit(limit).toArray();
+
             console.log(allDocs);
             return allDocs;
         } catch (error) {
@@ -52,7 +52,7 @@ let docsModel = {
                 errors: {
                     message: error.message
                 }
-            }
+            };
         } finally {
             await db.client.close();
         }
