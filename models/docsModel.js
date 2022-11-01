@@ -45,7 +45,7 @@ let docsModel = {
             const allDocs = await db.collection.find({}).toArray();
             // const res = await db.collection.find(criteria, projection).limit(limit).toArray();
 
-            console.log(allDocs);
+            // console.log(allDocs);
             return allDocs;
         } catch (error) {
             return {

@@ -9,7 +9,8 @@
     "express": "^4.17.2",
     "mongodb": "^4.8.1",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "socket.io": "^4.5.2"
   },
   "scripts": {
     "deploy": "npm run build && rsync -av --delete build/ asho20@ssh.student.bth.se:www/editor",
@@ -38,5 +39,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Asa-Hog/BTH-jsramverk-backend/issues"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.6",
+    "utf-8-validate": "^5.0.9"
   }
 }

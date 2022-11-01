@@ -9,12 +9,15 @@ const docs = require('./routes/docs');
 const reset = require('./routes/reset');
 const create = require('./routes/create');
 const update = require('./routes/update');
+const docsModel = require('./models/docsModel');
 
 const app = express();
+const httpServer = require("http").createServer(app);
+
 // const port = 1337;
 const port = process.env.PORT || 1337; // Emil hade 8976
+let throttleTimer;
 
-// //////////%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // app.use(bodyParser.json); // Emil hade
 // app.use(bodyParser.urlencoded({ extended: true })); // Emil hade
 
@@ -35,7 +38,6 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // This is middleware called for all routes.
-// Middleware takes three parameters.
 // Om du vill att denna middleware alltid skall anropas så behöver du lägga den högst upp i din kod.
 app.use((req, res, next) => {
     console.log(req.method);
@@ -43,34 +45,11 @@ app.use((req, res, next) => {
     next();
 });
 
-// Add a route ------------------------- svarar med text
-// app.get("/", (req, res) => {
-//     res.send("Hello World");
-//     });
-// Add a route ------------------------- svarar med json
-// app.get("/", (req, res) => {
-//     const data = {
-//         data: {
-//             msg: "Hello World"
-//         }
-//     };
-//     res.json(data); //Detta gör om response till json-format
-
 app.use('/', index);
 app.use('/docs', docs);
 app.use('/reset', reset);
 app.use('/create', create);
 app.use('/update', update);
-
-// app.get("/hello/:msg", (req, res) => {
-//     const data = {
-//         data: {
-//             msg: req.params.msg
-//         }
-//     };
-
-//     res.json(data);
-// });
 
 // Add routes for 404 and error handling
 // Catch 404 and forward to error handler
@@ -98,11 +77,71 @@ app.use((err, req, res, next) => {
     });
 });
 
-// Start up server
-// app.listen(port, () => console.log(`Example API listening on port ${port}!`));
 
-const server = app.listen(port, () => {
+const io = require("socket.io")(httpServer, {
+    cors: {
+      origin: "*", // "http://localhost:3000"
+      methods: ["GET", "POST"]
+    }
+});
+
+
+io.sockets.on('connection', function(socket) {
+    console.log("CONNECTION with socket id: ", socket.id);
+
+    socket.on('create', function(id) {
+        console.log("room ", id);
+        socket.join(id); // Joinar på id:t för dokumentet
+    });
+
+    socket.on('changedText', function(doc) {
+        console.log("2 received in server & sent to client in room", doc);
+        socket.to(doc["_id"]).emit("changedText", doc);
+
+
+        clearTimeout(throttleTimer); // Cleara timeouten för att starta om den på nytt
+        console.log("writing");
+        throttleTimer = setTimeout(function() {
+            console.log("now saving to database")
+            docsModel.update(doc); // Börjar spara dokumentet. Kommer det in ny data inom 2 s så clearas data/ sparningen, och ny sparning görs
+        }, 2000);
+    });
+
+});
+
+// Start up server
+const server = httpServer.listen(port, () => {
     console.log(`Editor API listening on port ${port}!`);
 });
 
 module.exports = server;
+
+
+
+
+
+
+
+// Add a route ------------------------- svarar med text
+
+// app.get("/", (req, res) => {
+//     res.send("Hello World");
+//     });
+// Add a route ------------------------- svarar med json
+// app.get("/", (req, res) => {
+//     const data = {
+//         data: {
+//             msg: "Hello World"
+//         }
+//     };
+//     res.json(data); //Detta gör om response till json-format
+
+// app.get("/hello/:msg", (req, res) => {
+//     const data = {
+//         data: {
+//             msg: req.params.msg
+//         }
+//     };
+
+//     res.json(data);
+// });
