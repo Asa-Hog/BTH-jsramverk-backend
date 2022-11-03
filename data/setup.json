@@ -1,14 +1,28 @@
 [
     {
         "name": "Inköpslista",
-        "html": "Tomater"
+        "html": "Tomater",
+        "owner": "Asa_4@hotmail.com",
+        "allowed_users": ["Asa_4@hotmail.com"]
     },
     {
         "name": "Saga",
-        "html": "Det var en gång..."
+        "html": "Det var en gång...",
+        "owner": "Asa_4@hotmail.com",
+        "allowed_users": ["Asa_4@hotmail.com", "efo@bth.se"]
+        
     },
     {
         "name": "Diktsamling",
-        "html": "En blå viol.."
+        "html": "En blå viol..",
+        "owner": "efo@bth.se",
+        "allowed_users": ["efo@bth.se"]
+    },
+    {
+        "name": "Roman",
+        "html": "Det var en kall natt i februari...",
+        "owner": "efo@bth.se",
+        "allowed_users": ["efo@bth.se", "Asa_4@hotmail.com"]
     }
+
 ]

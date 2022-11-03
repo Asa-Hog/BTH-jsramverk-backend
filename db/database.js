@@ -1,4 +1,4 @@
-// bryta ut hanteringen av databas uppkopplingen till en egen modul.
+// bryta ut hanteringen av databaskopplingen till en egen modul.
 
 const mongo = require("mongodb").MongoClient;
 // const config = require("./config.json");

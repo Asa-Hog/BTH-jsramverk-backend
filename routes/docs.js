@@ -9,11 +9,11 @@ router.get(
     "/",
     (req, res, next) => usersModel.checkToken(req, res, next),
     async (request, response) => {
-    const allDocs = await docsModel.getAllDocs();
+        const allDocs = await docsModel.getAllDocs();
 
-    return response.json({
-        data: allDocs
-    });
+        return response.json({
+            data: allDocs
+        });
 });
 
 module.exports = router;

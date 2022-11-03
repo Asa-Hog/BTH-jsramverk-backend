@@ -7,6 +7,8 @@ const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 
 const users = {
+    currentUser: "",
+
     register: async function register(res, body) {
         const email = body.email;
         const password = body.password;
@@ -87,11 +89,13 @@ const users = {
             });
         }
         // Vi vill hämta anv från databasen som har den epost-adressen
+        // Nedan skapar en ny collection "users"/ hämtar users från databasen
         let db = await database.getDb("users");
 
         try {
             const query = {email: email};
             const user = await db.collection.findOne(query);
+
 
             if (user) {
                 return users.comparePasswords(res, user, password);
@@ -113,6 +117,8 @@ const users = {
                 }
             });
         } finally {
+            console.log("User found", email);
+            this.currentUser = email;
             await db.client.close();
         }
     },
@@ -173,7 +179,39 @@ const users = {
 
 
 
-    }
+    },
+
+    // getUser: async function getUser() {
+    //     let db = await database.getDb("users");
+
+    //     try {
+    //         const query = {email: email};
+    //         const user = await db.collection.findOne(query);
+
+
+    //         if (user) {
+    //             return users.comparePasswords(res, user, password);
+    //         }
+
+
+    //         return res.status(401).json({
+    //             data: {
+    //                 message: "User does not exist"
+    //             }
+    //         });
+
+
+    //     } catch (error) {
+    //         return res.status(500).json({
+    //             errors: {
+    //                 status: 500,
+    //                 message: "Could not find user"
+    //             }
+    //         });
+    //     } finally {
+    //         await db.client.close();
+    //     }
+    // }
 
 
 };
