@@ -1,5 +1,6 @@
 const database = require("../db/database");
 const { ObjectId } = require('mongodb');
+const usersModel = require("../models/users");
 
 let docsModel = {
 
@@ -13,15 +14,28 @@ let docsModel = {
             let result = await db.collection.insertMany([
                 {
                     "name": "Inköpslista",
-                    "html": "Tomater"
+                    "html": "Tomater, mjölk, bröd",
+                    "owner": "Asa_4@hotmail.com",
+                    "allowedUsers": ["Asa_4@hotmail.com"]
                 },
                 {
                     "name": "Saga",
-                    "html": "Det var en gång..."
+                    "html": "Det var en gång...",
+                    "owner": "Asa_4@hotmail.com",
+                    "allowedUsers": ["Asa_4@hotmail.com", "efo@bth.se"]
+                    
                 },
                 {
                     "name": "Diktsamling",
-                    "html": "En blå viol.."
+                    "html": "En blå viol...",
+                    "owner": "efo@bth.se",
+                    "allowedUsers": ["efo@bth.se"]
+                },
+                {
+                    "name": "Roman",
+                    "html": "Det var en kall natt i februari...",
+                    "owner": "efo@bth.se",
+                    "allowedUsers": ["efo@bth.se", "Asa_4@hotmail.com"]
                 }
             ]);
 
@@ -37,6 +51,10 @@ let docsModel = {
         }
     },
 
+    // filterDocs: function filterDocs(allDocs) {
+    //     // return doc.owner.contains(usersModel.currentUser);
+    // },
+
     getAllDocs: async function getAllDocs() {
         let db;
 
@@ -45,8 +63,19 @@ let docsModel = {
             const allDocs = await db.collection.find({}).toArray();
             // const res = await db.collection.find(criteria, projection).limit(limit).toArray();
 
-            // console.log(allDocs);
-            return allDocs;
+            // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            // Lämna bara ut de dokument som tillhör allowedUser (alla owners blir automatiskt en allowed user)
+            filteredDocs = allDocs.filter(function(doc) {
+                let allowedUsersDocs = doc.allowedUsers.includes(usersModel.currentUser);
+
+                return allowedUsersDocs; 
+            });
+
+            console.log(filteredDocs);
+            // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+            return filteredDocs;
+            // return allDocs;
         } catch (error) {
             return {
                 errors: {
