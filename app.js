@@ -3,13 +3,15 @@ require('dotenv').config(); // Pga lösenord för atlas
 const express = require("express");
 const cors = require('cors');
 const morgan = require('morgan');
-// const bodyParser = require('body-parser'); //Emil hade denna
+const bodyParser = require('body-parser'); //Emil hade denna
 const index = require('./routes/index');
 const docs = require('./routes/docs');
 const reset = require('./routes/reset');
 const create = require('./routes/create');
 const update = require('./routes/update');
+const auth = require('./routes/auth');
 const docsModel = require('./models/docsModel');
+
 
 const app = express();
 const httpServer = require("http").createServer(app);
@@ -19,7 +21,7 @@ const port = process.env.PORT || 1337; // Emil hade 8976
 let throttleTimer;
 
 // app.use(bodyParser.json); // Emil hade
-// app.use(bodyParser.urlencoded({ extended: true })); // Emil hade
+app.use(bodyParser.urlencoded({ extended: true })); // Emil hade
 
 // Ett annat sätt att uppnå samma funktionalitet finns numer tillgängligt direkt i express.
 app.use(express.json()); // url-encodar mellanslag, åäö mm för delete, post, put-metoderna
@@ -50,6 +52,7 @@ app.use('/docs', docs);
 app.use('/reset', reset);
 app.use('/create', create);
 app.use('/update', update);
+app.use('/auth', auth);
 
 // Add routes for 404 and error handling
 // Catch 404 and forward to error handler
