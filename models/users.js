@@ -176,43 +176,7 @@ const users = {
                 }
                 next();
             });
-
-
-
-    },
-
-    // getUser: async function getUser() {
-    //     let db = await database.getDb("users");
-
-    //     try {
-    //         const query = {email: email};
-    //         const user = await db.collection.findOne(query);
-
-
-    //         if (user) {
-    //             return users.comparePasswords(res, user, password);
-    //         }
-
-
-    //         return res.status(401).json({
-    //             data: {
-    //                 message: "User does not exist"
-    //             }
-    //         });
-
-
-    //     } catch (error) {
-    //         return res.status(500).json({
-    //             errors: {
-    //                 status: 500,
-    //                 message: "Could not find user"
-    //             }
-    //         });
-    //     } finally {
-    //         await db.client.close();
-    //     }
-    // }
-
+    }
 
 };
 

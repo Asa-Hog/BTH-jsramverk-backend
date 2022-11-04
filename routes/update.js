@@ -6,6 +6,7 @@ let docsModel = require("../models/docsModel");
 
 
 router.put("/", async (request, response) => {
+    console.log("UPPDATERA");
     let currentDoc = request.body;
 
     const result = await docsModel.update(currentDoc);

@@ -51,9 +51,6 @@ let docsModel = {
         }
     },
 
-    // filterDocs: function filterDocs(allDocs) {
-    //     // return doc.owner.contains(usersModel.currentUser);
-    // },
 
     getAllDocs: async function getAllDocs() {
         let db;
@@ -63,7 +60,6 @@ let docsModel = {
             const allDocs = await db.collection.find({}).toArray();
             // const res = await db.collection.find(criteria, projection).limit(limit).toArray();
 
-            // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             // Lämna bara ut de dokument som tillhör allowedUser (alla owners blir automatiskt en allowed user)
             filteredDocs = allDocs.filter(function(doc) {
                 let allowedUsersDocs = doc.allowedUsers.includes(usersModel.currentUser);
@@ -71,11 +67,7 @@ let docsModel = {
                 return allowedUsersDocs; 
             });
 
-            console.log(filteredDocs);
-            // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
             return filteredDocs;
-            // return allDocs;
         } catch (error) {
             return {
                 errors: {
@@ -140,9 +132,38 @@ let docsModel = {
     },
 
 
-    // init: async function init() {
-    //     // 23.40 insertMany FL2
-    // },, data
+    addUser: async function addUser(data) {
+        let db;
+
+        let doc = data.doc;
+        let email = data.email;
+        let allowedUsers = doc.allowedUsers;
+
+        allowedUsers.push(email);
+
+        try {
+            db = await database.getDb();
+
+            // filter - det objekt som ska uppdateras
+            const filter = { _id: ObjectId(doc["_id"]) };
+
+            const result = await db.collection.updateOne(
+                filter, {$set: {allowedUsers: allowedUsers}});
+
+            return {
+                ...doc,
+                matchedCount: result.matchedCount,
+            };
+        } catch (error) {
+            return {
+                errors: {
+                    message: error.message
+                }
+            };
+        } finally {
+            await db.client.close();
+        }
+    }
 
 };
 
