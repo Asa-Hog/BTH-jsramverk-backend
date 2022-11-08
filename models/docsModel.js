@@ -163,7 +163,33 @@ let docsModel = {
         } finally {
             await db.client.close();
         }
-    }
+    },
+
+    getAllUsers: async function getAllUsers() {
+        let db;
+
+        try {
+            db = await database.getDb();
+            const allUsers = await db.collection.find({}).toArray();
+            // const res = await db.collection.find(criteria, projection).limit(limit).toArray();
+
+            // filteredDocs = allDocs.filter(function(doc) {
+                // let allowedUsersDocs = doc.allowedUsers.includes(usersModel.currentUser);
+
+                console.log(allUsrs);
+                return allUsers; 
+
+            // return filteredDocs;
+        } catch (error) {
+            return {
+                errors: {
+                    message: error.message
+                }
+            };
+        } finally {
+            await db.client.close();
+        }
+    },
 
 };
 

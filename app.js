@@ -12,7 +12,12 @@ const update = require('./routes/update');
 const auth = require('./routes/auth');
 const addUser = require('./routes/addUser');
 const docsModel = require('./models/docsModel');
-
+const visual = false;
+const { graphqlHTTP } = require('express-graphql');
+const {
+    GraphQLSchema
+  } = require("graphql");
+const RootQueryType = require("./graphql/root.js");
 
 const app = express();
 const httpServer = require("http").createServer(app);
@@ -56,6 +61,14 @@ app.use('/update', update);
 app.use('/addUser', addUser);
 app.use('/auth', auth);
 
+const schema = new GraphQLSchema({
+    query: RootQueryType
+});
+
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    graphiql: visual,
+}));
 
 // Add routes for 404 and error handling
 // Catch 404 and forward to error handler
