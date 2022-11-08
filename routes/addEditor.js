@@ -8,7 +8,7 @@ let docsModel = require("../models/docsModel");
 router.put("/", async (request, response) => {
     let doc = request.body;
 
-    const result = await docsModel.addUser(doc);
+    const result = await docsModel.addEditor(doc);
 
     return response.status(200).json( { data: result} );
 

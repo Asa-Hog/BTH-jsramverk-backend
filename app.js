@@ -10,7 +10,7 @@ const reset = require('./routes/reset');
 const create = require('./routes/create');
 const update = require('./routes/update');
 const auth = require('./routes/auth');
-const addUser = require('./routes/addUser');
+const addUser = require('./routes/addEditor');
 const docsModel = require('./models/docsModel');
 const visual = false;
 const { graphqlHTTP } = require('express-graphql');
@@ -58,7 +58,7 @@ app.use('/docs', docs);
 app.use('/reset', reset);
 app.use('/create', create);
 app.use('/update', update);
-app.use('/addUser', addUser);
+app.use('/addEditor', addUser);
 app.use('/auth', auth);
 
 const schema = new GraphQLSchema({

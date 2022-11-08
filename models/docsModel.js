@@ -132,7 +132,7 @@ let docsModel = {
     },
 
 
-    addUser: async function addUser(data) {
+    addEditor: async function addEditor(data) {
         let db;
 
         let doc = data.doc;
