@@ -52,6 +52,8 @@ const users = {
                         password: hash, // hash som vi fått från bcrypt
                     };
 
+                    // console.log(doc);
+                    // console.log(db.collection);
                     const result = await db.collection.insertOne(doc);
 
                     return res.status(201).json({
@@ -176,6 +178,25 @@ const users = {
                 }
                 next();
             });
+    },
+
+    getAllUsers: async function getAllUsers() {
+        let db;
+        try {
+            db = await database.getDb("users");
+            const allUsers = await db.collection.find({}).toArray();
+
+            return allUsers;
+
+            } catch (error) {
+            return {
+                errors: {
+                    message: error.message
+                }
+            };
+        } finally {
+            await db.client.close();
+        }
     }
 
 };

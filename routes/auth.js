@@ -9,8 +9,6 @@ router.post(
     async (req, res) => {
         const body = req.body;
 
-        // console.log("route", body);
-
         await usersModel.register(res, body);
 });
 
@@ -18,8 +16,6 @@ router.post(
     "/login",
     async (req, res) => {
         const body = req.body;
-
-        // console.log("route", body);
 
         await usersModel.login(res, body);
 });
