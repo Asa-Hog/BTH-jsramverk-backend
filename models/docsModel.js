@@ -8,6 +8,12 @@ let docsModel = {
         let db;
 
         try {
+            // Radera alla användare
+            db = await database.getDb("users");
+
+            await db.collection.deleteMany({});
+
+            // Radera allt innehåll i databasen och lägg till grundinnehåll
             db = await database.getDb();
 
             await db.collection.deleteMany({});

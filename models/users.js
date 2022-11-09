@@ -182,6 +182,7 @@ const users = {
 
     getAllUsers: async function getAllUsers() {
         let db;
+
         try {
             db = await database.getDb("users");
             const allUsers = await db.collection.find({}).toArray();
