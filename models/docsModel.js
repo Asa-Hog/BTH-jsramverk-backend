@@ -11,6 +11,7 @@ let docsModel = {
             db = await database.getDb();
 
             await db.collection.deleteMany({});
+
             let result = await db.collection.insertMany([
                 {
                     "name": "Inköpslista",
