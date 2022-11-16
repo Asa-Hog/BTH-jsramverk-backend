@@ -35,6 +35,7 @@ app.use(express.json()); // url-encodar mellanslag, åäö mm för delete, post,
 // i hela appen. Annars används det bara för get (från webbläsaren automatiskt)
 
 app.use(cors());
+
 app.options('*', cors()); //Emil hade
 app.disable('x-powered-by'); //Emil hade
 

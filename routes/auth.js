@@ -30,4 +30,15 @@ router.get(
         });
 });
 
+router.post(
+    "/invite",
+    async (req, res) => {
+        const body = req.body;
+
+        let result = await usersModel.invite(res, body);
+
+        return result;
+});
+
+
 module.exports = router;

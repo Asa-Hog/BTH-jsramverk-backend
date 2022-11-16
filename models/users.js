@@ -6,6 +6,11 @@ const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 
+const sgMail = require("@sendgrid/mail");
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// "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"
+
 const users = {
     currentUser: "",
 
@@ -198,8 +203,41 @@ const users = {
         } finally {
             await db.client.close();
         }
-    }
+    },
 
+    invite: async function invite(res, body) {
+        console.log("2 backend usersmodel");
+
+        let currentUser = this.currentUser;
+        let email1 = body.email;
+        console.log("3 email1", email1);
+
+        let email = "asho20@student.bth.se";
+        let site = "https://www.student.bth.se/~asho20/editor/";
+
+        const message = {
+            to: email,
+            from: 'asho20@student.bth.se', // currentUser? Nej. Ändra till namn Texteditor?
+            subject: "Invitation to edit document",
+            text: `Hi!
+             ${currentUser} has given you the opportunity to edit a document in Text Editor. Register at https://www.student.bth.se/~asho20/editor/ to get going!
+            /Team behind Text Editor`,
+ 
+            html:`<p>Hi!</p> <p>${currentUser} has given you the opportunity to edit a document in Text Editor. Register <a href = ${site}>here</a> to get going!</p> <p>/Team behind Text Editor</p>`
+        };
+
+        try {
+            let res = await sgMail.send(message);
+            return res;
+        } catch (error) {
+            console.error(error);
+        
+            if (error.response) {
+            console.error(error.response.body)
+            }
+            return error;
+        }
+    }
 };
 
 module.exports = users;
