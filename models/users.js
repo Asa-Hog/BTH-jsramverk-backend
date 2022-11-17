@@ -9,7 +9,6 @@ const jwt = require('jsonwebtoken');
 const sgMail = require("@sendgrid/mail");
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-// "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"
 
 const users = {
     currentUser: "",
@@ -209,10 +208,9 @@ const users = {
         console.log("2 backend usersmodel");
 
         let currentUser = this.currentUser;
-        let email1 = body.email;
-        console.log("3 email1", email1);
+        let email = body.email;
 
-        let email = "asho20@student.bth.se";
+        email = "asho20@student.bth.se"; // Ta bort
         let site = "https://www.student.bth.se/~asho20/editor/";
 
         const message = {

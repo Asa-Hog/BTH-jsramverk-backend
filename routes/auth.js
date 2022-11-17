@@ -30,14 +30,17 @@ router.get(
         });
 });
 
-router.post(
-    "/invite",
+router.get(
+    "/invite/:email",
     async (req, res) => {
-        const body = req.body;
+        const body = req.params;
+        // console.log(body);
 
         let result = await usersModel.invite(res, body);
 
-        return result;
+        return res.json({
+            data: result
+        });
 });
 
 
