@@ -205,17 +205,14 @@ const users = {
     },
 
     invite: async function invite(res, body) {
-        console.log("2 backend usersmodel");
-
         let currentUser = this.currentUser;
         let email = body.email;
 
-        email = "asho20@student.bth.se"; // Ta bort
         let site = "https://www.student.bth.se/~asho20/editor/";
 
         const message = {
             to: email,
-            from: 'asho20@student.bth.se', // currentUser? Nej. Ändra till namn Texteditor?
+            from: 'asho20@student.bth.se',
             subject: "Invitation to edit document",
             text: `Hi!
              ${currentUser} has given you the opportunity to edit a document in Text Editor. Register at https://www.student.bth.se/~asho20/editor/ to get going!

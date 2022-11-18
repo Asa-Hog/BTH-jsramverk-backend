@@ -34,7 +34,6 @@ router.get(
     "/invite/:email",
     async (req, res) => {
         const body = req.params;
-        // console.log(body);
 
         let result = await usersModel.invite(res, body);
 
