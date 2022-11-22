@@ -23,26 +23,37 @@ let docsModel = {
                     "name": "Inköpslista",
                     "html": "Tomater, mjölk, bröd",
                     "owner": "Asa_4@hotmail.com",
-                    "allowedUsers": ["Asa_4@hotmail.com"]
+                    "allowedUsers": ["Asa_4@hotmail.com"],
+                    "docType": "text"
                 },
                 {
                     "name": "Saga",
                     "html": "Det var en gång...",
                     "owner": "Asa_4@hotmail.com",
-                    "allowedUsers": ["Asa_4@hotmail.com", "efo@bth.se"]
+                    "allowedUsers": ["Asa_4@hotmail.com", "efo@bth.se"],
+                    "docType": "text"
                     
                 },
                 {
                     "name": "Diktsamling",
                     "html": "En blå viol...",
                     "owner": "efo@bth.se",
-                    "allowedUsers": ["efo@bth.se"]
+                    "allowedUsers": ["efo@bth.se"],
+                    "docType": "text"
                 },
                 {
                     "name": "Roman",
                     "html": "Det var en kall natt i februari...",
                     "owner": "efo@bth.se",
-                    "allowedUsers": ["efo@bth.se", "Asa_4@hotmail.com"]
+                    "allowedUsers": ["efo@bth.se", "Asa_4@hotmail.com"],
+                    "docType": "text"
+                },
+                {
+                    "name": "Calculation",
+                    "html": "let a = 3;\nlet b = 4; \nconsole.log(a*b);",
+                    "owner": "Asa_4@hotmail.com",
+                    "allowedUsers": ["efo@bth.se", "Asa_4@hotmail.com"],
+                    "docType": "code"
                 }
             ]);
 
