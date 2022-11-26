@@ -24,14 +24,16 @@ let docsModel = {
                     "html": "Tomater, mjölk, bröd",
                     "owner": "Asa_4@hotmail.com",
                     "allowedUsers": ["Asa_4@hotmail.com"],
-                    "docType": "text"
+                    "docType": "text",
+                    "comments": [{"range": [0, 7], "commentText": "Glöm inte", "createdBy" : "Asa_4@hotmail.com"}, {"range": [16, 20], "commentText": "Köp ett gott!", "createdBy" : "Asa_4@hotmail.com"}]
                 },
                 {
                     "name": "Saga",
                     "html": "Det var en gång...",
                     "owner": "Asa_4@hotmail.com",
                     "allowedUsers": ["Asa_4@hotmail.com", "efo@bth.se"],
-                    "docType": "text"
+                    "docType": "text",
+                    "comments": []
                     
                 },
                 {
@@ -39,21 +41,24 @@ let docsModel = {
                     "html": "En blå viol...",
                     "owner": "efo@bth.se",
                     "allowedUsers": ["efo@bth.se"],
-                    "docType": "text"
+                    "docType": "text",
+                    "comments": []
                 },
                 {
                     "name": "Roman",
                     "html": "Det var en kall natt i februari...",
                     "owner": "efo@bth.se",
                     "allowedUsers": ["efo@bth.se", "Asa_4@hotmail.com"],
-                    "docType": "text"
+                    "docType": "text",
+                    "comments": []
                 },
                 {
                     "name": "Calculation",
                     "html": "let a = 3;\nlet b = 4; \nconsole.log(a*b);",
                     "owner": "Asa_4@hotmail.com",
                     "allowedUsers": ["efo@bth.se", "Asa_4@hotmail.com"],
-                    "docType": "code"
+                    "docType": "code",
+                    "comments": []
                 }
             ]);
 
