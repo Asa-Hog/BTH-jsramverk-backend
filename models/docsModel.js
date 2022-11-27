@@ -21,7 +21,7 @@ let docsModel = {
             let result = await db.collection.insertMany([
                 {
                     "name": "Inköpslista",
-                    "html": "Tomater, mjölk, bröd",
+                    "html":`Tomater, mjölk, bröd`,
                     "owner": "Asa_4@hotmail.com",
                     "allowedUsers": ["Asa_4@hotmail.com"],
                     "docType": "text",
@@ -50,7 +50,7 @@ let docsModel = {
                     "owner": "efo@bth.se",
                     "allowedUsers": ["efo@bth.se", "Asa_4@hotmail.com"],
                     "docType": "text",
-                    "comments": []
+                    "comments": [{"range": [23, 31], "commentText": "Ändra till mars?", "createdBy" : "Asa_4@hotmail.com"}]
                 },
                 {
                     "name": "Calculation",
@@ -135,9 +135,11 @@ let docsModel = {
             // filter - det objekt som ska uppdateras
             const filter = { _id: ObjectId(currentDoc["_id"]) };
             const html = currentDoc.html;
+            const comments = currentDoc.comments;
+            console.log(comments);
 
             const result = await db.collection.updateOne(
-                filter, {$set: {html: html}});
+                filter, {$set: {html: html, comments: comments}});
 
             return {
                 ...currentDoc,
