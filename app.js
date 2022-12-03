@@ -115,7 +115,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('changedText', function(doc) {
-        console.log("2 received in server & sent to client in room", doc);
+        // console.log("2 received in server & sent to client in room", doc);
         socket.to(doc["_id"]).emit("changedText", doc);
 
 

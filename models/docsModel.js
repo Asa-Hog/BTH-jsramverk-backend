@@ -25,7 +25,7 @@ let docsModel = {
                     "owner": "Asa_4@hotmail.com",
                     "allowedUsers": ["Asa_4@hotmail.com"],
                     "docType": "text",
-                    "comments": [{"range": [0, 7], "commentText": "Glöm inte", "createdBy" : "Asa_4@hotmail.com"}, {"range": [16, 20], "commentText": "Köp ett gott!", "createdBy" : "Asa_4@hotmail.com"}]
+                    "comments": [{"range": [0, 7], "commentText": "Glöm inte!", "createdBy" : "Asa_4@hotmail.com"}, {"range": [16, 20], "commentText": "Köp ett gott bröd!", "createdBy" : "Asa_4@hotmail.com"}]
                 },
                 {
                     "name": "Saga",
@@ -34,7 +34,6 @@ let docsModel = {
                     "allowedUsers": ["Asa_4@hotmail.com", "efo@bth.se"],
                     "docType": "text",
                     "comments": []
-                    
                 },
                 {
                     "name": "Diktsamling",
@@ -50,11 +49,11 @@ let docsModel = {
                     "owner": "efo@bth.se",
                     "allowedUsers": ["efo@bth.se", "Asa_4@hotmail.com"],
                     "docType": "text",
-                    "comments": [{"range": [23, 31], "commentText": "Ändra till mars?", "createdBy" : "Asa_4@hotmail.com"}]
+                    "comments": [] // {"range": [23, 31], "commentText": "Ändra till mars?", "createdBy" : "Asa_4@hotmail.com"}
                 },
                 {
                     "name": "Calculation",
-                    "html": "let a = 3;\nlet b = 4; \nconsole.log(a*b);",
+                    "html": "let a = 3;\nlet b = 4; \nconsole.log(a*b); \nconsole.log(b*b);",
                     "owner": "Asa_4@hotmail.com",
                     "allowedUsers": ["efo@bth.se", "Asa_4@hotmail.com"],
                     "docType": "code",
@@ -136,7 +135,7 @@ let docsModel = {
             const filter = { _id: ObjectId(currentDoc["_id"]) };
             const html = currentDoc.html;
             const comments = currentDoc.comments;
-            console.log(comments);
+            console.log("138 backend docsModel currentDoc.html", html);
 
             const result = await db.collection.updateOne(
                 filter, {$set: {html: html, comments: comments}});
