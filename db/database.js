@@ -30,6 +30,10 @@ const database = {
     getDb: async function getDb(collectionName="docs") {
         let dsn = `mongodb+srv://${process.env.ATLAS_USERNAME}:${process.env.ATLAS_PASSWORD}@cluster-bth-jsramverk-e.yic4yta.mongodb.net/?retryWrites=true&w=majority`;
 
+        // let dsn = `mongodb+srv://text:pass@cluster0.rgvmt.mongodb.net/?retryWrites=true&w=majority`;//FUNGERAR LOKALT (NYTT KLUSTER)
+
+        // let dsn = `mongodb+srv://${process.env.ATLAS_USERNAME}:${process.env.ATLAS_PASSWORD}@cluster0.rgvmt.mongodb.net/?retryWrites=true&w=majority`;//NYTT KLUSTER
+
         if (process.env.NODE_ENV === 'test') {
             dsn = "mongodb://localhost:27017/test";
         }

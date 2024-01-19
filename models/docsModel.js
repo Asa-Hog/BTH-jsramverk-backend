@@ -22,40 +22,40 @@ let docsModel = {
                 {
                     "name": "Inköpslista",
                     "html":`Tomater, mjölk, bröd`,
-                    "owner": "Asa_4@hotmail.com",
-                    "allowedUsers": ["Asa_4@hotmail.com"],
+                    "owner": "mail@mail.com",
+                    "allowedUsers": ["mail@mail.com"],
                     "docType": "text",
-                    "comments": [{"range": [0, 7], "commentText": "Glöm inte!", "createdBy" : "Asa_4@hotmail.com"}, {"range": [16, 20], "commentText": "Köp ett gott bröd!", "createdBy" : "Asa_4@hotmail.com"}]
+                    "comments": [{"range": [0, 7], "commentText": "Glöm inte!", "createdBy" : "mail@mail.com"}, {"range": [16, 20], "commentText": "Köp ett gott bröd!", "createdBy" : "mail@mail.com"}]
                 },
                 {
                     "name": "Saga",
                     "html": "Det var en gång...",
-                    "owner": "Asa_4@hotmail.com",
-                    "allowedUsers": ["Asa_4@hotmail.com", "efo@bth.se"],
+                    "owner": "mail@mail.com",
+                    "allowedUsers": ["mail@mail.com", "test@test.se"],
                     "docType": "text",
                     "comments": []
                 },
                 {
                     "name": "Diktsamling",
                     "html": "En blå viol...",
-                    "owner": "efo@bth.se",
-                    "allowedUsers": ["efo@bth.se"],
+                    "owner": "test@test.se",
+                    "allowedUsers": ["test@test.se"],
                     "docType": "text",
                     "comments": []
                 },
                 {
                     "name": "Roman",
                     "html": "Det var en kall natt i februari...",
-                    "owner": "efo@bth.se",
-                    "allowedUsers": ["efo@bth.se", "Asa_4@hotmail.com"],
+                    "owner": "test@test.se",
+                    "allowedUsers": ["test@test.se", "mail@mail.com"],
                     "docType": "text",
-                    "comments": [] // {"range": [23, 31], "commentText": "Ändra till mars?", "createdBy" : "Asa_4@hotmail.com"}
+                    "comments": [] // {"range": [23, 31], "commentText": "Ändra till mars?", "createdBy" : "mail@mail.com"}
                 },
                 {
                     "name": "Calculation",
                     "html": "let a = 3;\nlet b = 4; \nconsole.log(a*b); \nconsole.log(b*b);",
-                    "owner": "Asa_4@hotmail.com",
-                    "allowedUsers": ["efo@bth.se", "Asa_4@hotmail.com"],
+                    "owner": "mail@mail.com",
+                    "allowedUsers": ["test@test.se", "mail@mail.com"],
                     "docType": "code",
                     "comments": []
                 }
